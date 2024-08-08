@@ -1,0 +1,37 @@
+<div class="content" role="main">
+  <h2>Active housekeeping books list</h2>
+
+  <table class="table">
+      <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">
+              <a routerLink="/housekeeping-book/list/" [queryParams]="{orderName:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+              Name
+              <a routerLink="/housekeeping-book/list/" [queryParams]="{orderName:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+            </th>
+            <th scope="col">
+              <a routerLink="/housekeeping-book/list/" [queryParams]="{orderDescription:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+              Description
+              <a routerLink="/housekeeping-book/list/" [queryParams]="{orderDescription:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+            </th>
+            <th scope="col">
+              <span routerLink="/housekeeping-book/list">Clear filters <span class="btn btn-close"></span></span>
+            </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let book of housekeepingbooks; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{book.name}}</td>
+              <td>{{book.description}}</td>
+              <td>
+                  <span routerLink="/housekeeping-book/details/{{book.id}}" [queryParams]="{orderIssuedAt:'up'}" class="btn btn-success">Open</span>
+                  <span (click)="deleteHousekeepingBook(book)" class="btn btn-danger">Delete</span>
+                  <span (click)="archiveHousekeepingBook(book)" class="btn btn-danger">Archive</span>
+                  <span routerLink="/housekeeping-book/edit/{{book.id}}" class="btn btn-primary">Edit</span>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>

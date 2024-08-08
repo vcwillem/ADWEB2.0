@@ -1,0 +1,58 @@
+<div class="content" role="main">
+  <div class="row">
+    <div class="col-6">
+      <h2>Transactions from this housekeeping book</h2>
+    </div>
+    <div class="col-5">
+      <span routerLink="/housekeeping-book/details/{{id}}/transaction/create" class="btn btn-primary mt-3">Add transaction</span>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderName:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        Name
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderName:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+      </th>
+      <th scope="col">
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderDescription:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        Description
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderDescription:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+      </th>
+      <th scope="col">
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderAmount:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        Amount
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderAmount:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+      </th>
+      <th scope="col">
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderIssuedAt:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        Issued at
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderIssuedAt:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+      </th>
+      <th class="pb-4" scope="col">
+        Category
+      </th>
+      <th scope="col">
+        <span routerLink="/housekeeping-book/details/{{id}}">Clear filters <span class="btn btn-close"></span></span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <td>{{transaction.name}}</td>
+      <td>{{transaction.description}}</td>
+      <td *ngIf="transaction.amount > 0" class="green">{{transaction.amount}}</td>
+      <td *ngIf="transaction.amount == 0">{{transaction.amount}}</td>
+      <td *ngIf="transaction.amount < 0" class="red">{{transaction.amount}}</td>
+      <td>{{transaction.issuedAt.toString().slice(4, 24)}}</td>
+      <td>{{getCategoryName(transaction.categoryId)}}</td>
+      <td>
+        <span (click)="deleteTransaction(transaction)" class="btn btn-danger">Delete</span>
+        <span routerLink="/housekeeping-book/details/{{id}}/transaction/edit/{{transaction.id}}" class="btn btn-primary">Edit</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

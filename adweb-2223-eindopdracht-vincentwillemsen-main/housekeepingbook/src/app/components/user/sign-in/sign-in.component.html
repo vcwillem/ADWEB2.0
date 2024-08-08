@@ -1,0 +1,46 @@
+<div class="content" role="main">
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <h2 style="color: white">You're logged out</h2>
+  </nav>
+
+  <div class="row">
+    <div class="col-5">
+      <div class="displayTableCell">
+        <div class="authBlock">
+          <h3 style="margin-bottom: 20px;">Log in with password</h3>
+          <div class="formGroup">
+            <input type="text" class="form-control" placeholder="Username" #userName required>
+          </div>
+          <div class="formGroup">
+            <input type="password" class="form-control" placeholder="Password" #userPassword required>
+          </div>
+
+          <div class="formGroup">
+            <input type="button" class="btn btn-primary" value="Log in"
+                   (click)="authService.SignIn(userName.value, userPassword.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="col-5">
+    <div class="displayTable">
+      <div class="displayTableCell">
+        <div class="authBlock">
+          <h3>Register new account</h3>
+          <div class="formGroup">
+            <input type="email" class="form-control" placeholder="Email Address" #userEmail required />
+          </div>
+          <div class="formGroup">
+            <input type="password" class="form-control" placeholder="Password" #userPwd required />
+          </div>
+          <div class="formGroup">
+            <input type="button" class="btn btn-primary" value="Register"
+                   (click)="authService.SignUp(userEmail.value, userPwd.value)" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

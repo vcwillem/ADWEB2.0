@@ -1,0 +1,42 @@
+<div class="content" role="main">
+  <h2>Your categories</h2>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">
+        <a routerLink="/category/list/" [queryParams]="{orderName:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        Name
+        <a routerLink="/category/list/" [queryParams]="{orderName:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+      </th>
+      <th scope="col">
+        <a routerLink="/category/list/" [queryParams]="{orderBudget:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        Budget
+        <a routerLink="/category/list/" [queryParams]="{orderBudget:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+      </th>
+      <th scope="col">
+        <a routerLink="/category/list/" [queryParams]="{orderDueDate:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        Due date
+        <a routerLink="/category/list/" [queryParams]="{orderDueDate:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+      </th>
+      <th scope="col">
+        <span routerLink="/category/list">Clear filters <span class="btn btn-close"></span></span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of categories; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{category.name}}</td>
+      <td>{{category.budget}}</td>
+      <td>{{category.dueDate}}</td>
+      <td>
+        <span routerLink="/category/details/{{category.id}}" class="btn btn-success">Open</span>
+        <span (click)="deleteCategory(category)" class="btn btn-danger">Delete</span>
+        <span routerLink="/category/edit/{{category.id}}" class="btn btn-primary">Edit</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
