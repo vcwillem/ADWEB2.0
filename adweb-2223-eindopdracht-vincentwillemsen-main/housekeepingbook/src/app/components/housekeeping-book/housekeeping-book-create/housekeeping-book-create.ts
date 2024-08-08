@@ -3,7 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HousekeepingBookService} from 'src/app/services/housekeeping-book.service';
 import firebase from "firebase/compat";
-import User = firebase.User;
+import {UserModel} from "../../../models/user.model";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-housekeeping-book-create',
@@ -12,19 +13,24 @@ import User = firebase.User;
 })
 export class HousekeepingBookCreate {
   public housekeepingbookForm: FormGroup;
-  public existingUsers: User;
+  public users;
+  public userService: UserService;
+  private whitelistedUsers: UserModel[];
 
   constructor(
     public service: HousekeepingBookService,
     public formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    userService: UserService
   ) {
+    this.userService = userService;
     this.housekeepingbookForm = this.formBuilder.group({
       name: [''],
       description: [''],
       whitelistedUsers: [''],
       isArchived: [false]
-    })
+    });
+    this.userService.getUsers().subscribe(users => { this.users = users; });
   }
 
 

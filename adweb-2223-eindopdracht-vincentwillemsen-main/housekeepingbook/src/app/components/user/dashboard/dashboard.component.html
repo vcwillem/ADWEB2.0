@@ -8,7 +8,7 @@
             <div class="col-md-12">
               <div class="media">
                 <div class="media-body">
-                  <h1><strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                  <h1><strong>{{user.email.split('.')[0]}}</strong></h1>
                   <p>User ID: <strong>{{user.uid}}</strong></p>
                   <p>Email: <strong>{{user.email}}</strong></p>
                   <p>Email verification: <strong>{{user.emailVerified}}</strong></p>

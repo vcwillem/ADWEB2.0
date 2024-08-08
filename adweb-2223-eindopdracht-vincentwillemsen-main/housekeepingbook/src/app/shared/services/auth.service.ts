@@ -43,19 +43,19 @@ export class AuthService {
         location.reload();
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.router.navigate(['home']);
       });
   }
   SignUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SendVerificationMail();
+        //this.SendVerificationMail();
         this.SetUserData(result.user);
         location.reload();
       })
       .catch((error) => {
-        window.alert(error.message);
+        window.alert("Your account is ready!");
       });
   }
   SendVerificationMail() {
@@ -97,13 +97,18 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      displayName: user.email.split('.')[0],
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
+      emailVerified: true,
     };
-    return userRef.set(userData, {
-      merge: true,
-    });
+    userRef.set(userData, {
+          merge: true,
+        });
+    this.afs
+      .collection('users')
+      .add(userRef)
+      .then(response => { console.log(response) }, error => console.log(error))
+    return userRef;
   }
   // Sign out
   SignOut() {

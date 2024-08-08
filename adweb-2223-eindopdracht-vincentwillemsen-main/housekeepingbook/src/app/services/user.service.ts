@@ -20,19 +20,20 @@ export class UserService {
   constructor(private angularFirestore: AngularFirestore, public authService: AuthService) {
   }
 
-  getUsers(activatedRoute: ActivatedRoute): Observable<UserModel[]> {
+  getUsers(): Observable<UserModel[]> {
     return new Observable((sub: Subscriber<any>) => {
       onSnapshot(collection(db, "users"), (snapshot) => {
-        const items: UserModel[] = [];
+        const users: UserModel[] = [];
 
         snapshot.forEach((doc) => {
-          if (doc.data()["userId"] == this.authService.userData.uid) {
-            items.push({
+          if (this.authService.userData.uid != doc.id) {
+            users.push({
               id: doc.id,
               name: doc.data()["displayName"],
             })
           }
         })
+        sub.next(users);
       })
     });
   }
