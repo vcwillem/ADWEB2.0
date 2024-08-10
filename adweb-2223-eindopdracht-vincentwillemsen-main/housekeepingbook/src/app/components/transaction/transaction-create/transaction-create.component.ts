@@ -16,6 +16,8 @@ export class TransactionCreateComponent {
   private housekeepingBookId: string;
   public transactionForm: FormGroup;
   public categories: CategoryModel[];
+  public selectedCategory: CategoryModel;
+  public draggedCategory: CategoryModel;
 
   constructor(
     public service: TransactionService,
@@ -38,8 +40,21 @@ export class TransactionCreateComponent {
     categoryService.getCategories(route).subscribe(categories => this.categories = categories)
   }
 
+  onDragStart(category: any) {
+    this.draggedCategory = category;
+  }
+
+  allowDrop(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.selectedCategory = this.draggedCategory;
+  }
+
   onSubmit(){
-    this.service.createTransaction(this.transactionForm.value, this.housekeepingBookId);
+    this.service.createTransaction(this.transactionForm.value, this.housekeepingBookId, this.selectedCategory.id);
     this.router.navigate(['/housekeeping-book/details/' + this.housekeepingBookId ], { queryParams: {orderIssuedAt: 'up'} });
   }
 }

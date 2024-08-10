@@ -96,7 +96,8 @@ export class TransactionService {
     return items;
   }
 
-  createTransaction(transaction: TransactionModel, housekeepingBookId: string) {
+  createTransaction(transaction: TransactionModel, housekeepingBookId: string, categoryId: string) {
+    transaction.categoryId = categoryId;
     transaction.issuedAt = Date().toLocaleString();
     transaction.housekeepingBookId = housekeepingBookId;
     console.log(transaction)
