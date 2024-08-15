@@ -16,7 +16,7 @@ export class TransactionCreateComponent {
   private housekeepingBookId: string;
   public transactionForm: FormGroup;
   public categories: CategoryModel[];
-  public selectedCategory: CategoryModel;
+  public selectedCategory: { name: string; id: string };
   public draggedCategory: CategoryModel;
 
   constructor(

@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CategoryDetailsComponent {
   public categoryDetails: FormGroup;
-  private categoryId: string;
+  public categoryId: string;
   categoryRef: any;
 
   constructor(
