@@ -4,11 +4,9 @@ import {AuthService} from "../shared/services/auth.service";
 import {CategoryModel} from "../models/category.model";
 import {Observable, Subscriber} from "rxjs";
 import {collection, getFirestore, onSnapshot} from "firebase/firestore";
-import {HousekeepingBookModel} from "../models/housekeeping-book.model";
 import {initializeApp} from "firebase/app";
 import {environment} from "../../environments/environment";
 import {ActivatedRoute} from "@angular/router";
-import {TransactionModel} from "../models/transaction.model";
 
 const app = initializeApp(environment.firebaseConfig);
 const db = getFirestore(app);
