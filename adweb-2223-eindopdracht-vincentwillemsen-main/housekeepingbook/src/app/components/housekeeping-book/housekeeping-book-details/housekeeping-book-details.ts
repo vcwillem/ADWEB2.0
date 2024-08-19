@@ -5,6 +5,7 @@ import { TransactionService } from "../../../services/transaction.service";
 import { CategoryModel } from "../../../models/category.model";
 import { CategoryService } from "../../../services/category.service";
 import { Chart, registerables } from 'chart.js';
+import {catchError, combineLatest, forkJoin, mergeMap} from "rxjs";
 
 Chart.register(...registerables);
 
@@ -18,6 +19,7 @@ export class HousekeepingBookDetails implements OnInit {
   public transactions: TransactionModel[] = [];
   private categories: CategoryModel[] = [];
   public lineChart: any;
+  public barChart: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,14 +35,17 @@ export class HousekeepingBookDetails implements OnInit {
   }
 
   private loadData(): void {
-    this.transactionService.getTransactionList(this.id, this.activatedRoute)
-      .subscribe(transactions => {
+    this.transactionService.getTransactionList(this.id, this.activatedRoute).pipe(
+      mergeMap(transactions => {
         this.transactions = transactions;
-        this.createCharts();
-      });
-
-    this.categoryService.getCategories(this.activatedRoute)
-      .subscribe(categories => this.categories = categories);
+        return this.categoryService.getCategories(this.activatedRoute);
+      })
+    ).subscribe(categories => {
+      this.categories = categories;
+      console.log('Transactions:', this.transactions);
+      console.log('Categories:', this.categories);
+      this.createCharts();
+    });
   }
 
   deleteTransaction(transaction: TransactionModel): void {
@@ -60,6 +65,11 @@ export class HousekeepingBookDetails implements OnInit {
   }
 
   private createCharts(): void {
+    this.createLineChart();
+    this.createBarChart();
+  }
+
+  private createLineChart(): void {
     let dataValues: number[] = [];
     let dataDates: string[] = [];
     let saldo = 0;
@@ -73,10 +83,6 @@ export class HousekeepingBookDetails implements OnInit {
       dataDates.push(date);
     });
 
-    this.createLineChart(dataValues, dataDates);
-  }
-
-  private createLineChart(dataValues: number[], dataDates: string[]): void {
     this.lineChart = new Chart("LineChart", {
       type: 'line',
       data: {
@@ -86,7 +92,6 @@ export class HousekeepingBookDetails implements OnInit {
             label: "Saldo",
             data: dataValues,
             borderColor: 'orange',
-            backgroundColor: 'rgba(0, 128, 0, 0.2)'
           }
         ]
       },
@@ -104,4 +109,54 @@ export class HousekeepingBookDetails implements OnInit {
       }
     });
   }
+
+  private createBarChart(): void {
+    let labels: string[] = [];
+    let data: number[] = [];
+
+    this.categories.forEach( cat => {
+      let totalSpent: number = 0;
+
+      this.transactions.forEach(trans => {
+        if (trans.categoryId == cat.id && trans.amount < 0) {
+          totalSpent = trans.amount + totalSpent;
+        }
+      })
+
+      labels.push(cat.name);
+      data.push(totalSpent);
+      console.log(cat.name);
+      console.log(totalSpent);
+    });
+
+    console.log(labels);
+    console.log(data);
+
+     this.barChart = new Chart("BarChart", {
+       type: 'bar',
+       data: {
+         labels: labels,
+         datasets: [
+           {
+             label: 'Expenses by Category',
+             data: data,
+             borderColor: 'orange',
+             backgroundColor: 'rgba(128, 0, 0, 0.2)'
+           }
+         ]
+       },
+       options: {
+         aspectRatio: 2.5,
+         scales: {
+           y: {
+             max: 0,
+             min: -1000,
+             ticks: {
+               stepSize: 100
+             }
+           }
+         }
+       }
+     });
+   }
 }

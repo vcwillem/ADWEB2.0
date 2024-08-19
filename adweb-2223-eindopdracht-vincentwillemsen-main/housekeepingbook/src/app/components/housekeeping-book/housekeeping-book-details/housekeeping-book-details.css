@@ -22,3 +22,8 @@ a {
 .red {
   color: red;
 }
+
+.chart-container .chart {
+  float: left;
+  width: 98%;
+}
