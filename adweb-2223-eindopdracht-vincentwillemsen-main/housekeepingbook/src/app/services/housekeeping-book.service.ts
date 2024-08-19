@@ -37,7 +37,6 @@ export class HousekeepingBookService {
           } catch {
             isWhitelisted = false;
           }
-          console.log(isWhitelisted);
           if (!doc.data()["isArchived"] && (doc.data()["userId"] == this.authService.userData.uid || isWhitelisted)) {
             items.push({
               id: doc.id,
