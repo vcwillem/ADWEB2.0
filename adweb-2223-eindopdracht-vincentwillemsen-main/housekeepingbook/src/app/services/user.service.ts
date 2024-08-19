@@ -6,9 +6,6 @@ import {Observable, Subscriber} from "rxjs";
 import {collection, getFirestore, onSnapshot} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
 import {environment} from "../../environments/environment";
-import {ActivatedRoute} from "@angular/router";
-import firebase from "firebase/compat";
-import User = firebase.User;
 
 const app = initializeApp(environment.firebaseConfig);
 const db = getFirestore(app);

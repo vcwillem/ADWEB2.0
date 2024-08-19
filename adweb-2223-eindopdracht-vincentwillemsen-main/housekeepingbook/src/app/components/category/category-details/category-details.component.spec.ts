@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import { of } from 'rxjs';
-import { CategoryService } from '../../../services/category.service';
+import {of} from 'rxjs';
+import {CategoryService} from '../../../services/category.service';
 import {CategoryDetailsComponent} from "./category-details.component";
 import {RouterTestingModule} from "@angular/router/testing";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -24,7 +24,7 @@ describe('CategoryDetailsComponent', () => {
     };
 
     mockActivatedRoute = {
-      params: of({ id: '12AB' })
+      params: of({id: '12AB'})
     };
 
     mockRouter = {
@@ -32,16 +32,16 @@ describe('CategoryDetailsComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ CategoryDetailsComponent ],
+      declarations: [CategoryDetailsComponent],
       imports: [
         ReactiveFormsModule,
         RouterTestingModule
       ],
       providers: [
         FormBuilder,
-        { provide: CategoryService, useValue: mockCategoryService },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute },
-        { provide: Router, useValue: mockRouter }
+        {provide: CategoryService, useValue: mockCategoryService},
+        {provide: ActivatedRoute, useValue: mockActivatedRoute},
+        {provide: Router, useValue: mockRouter}
       ]
     }).compileComponents();
   });

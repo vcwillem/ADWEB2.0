@@ -76,19 +76,23 @@ export class HousekeepingBookService {
   orderHousekeepingBooks(activatedRoute: ActivatedRoute, items: HousekeepingBookModel[]) {
     activatedRoute.queryParams.subscribe(params => {
       if (params["orderDescription"] == "up") {
-        items.sort(function(a: HousekeepingBookModel, b: HousekeepingBookModel){
-          return a.description.localeCompare(b.description)});
+        items.sort(function (a: HousekeepingBookModel, b: HousekeepingBookModel) {
+          return a.description.localeCompare(b.description)
+        });
       } else if (params["orderDescription"] == "down") {
-        items.sort(function(a: HousekeepingBookModel, b: HousekeepingBookModel){
-          return b.description.localeCompare(a.description)});
+        items.sort(function (a: HousekeepingBookModel, b: HousekeepingBookModel) {
+          return b.description.localeCompare(a.description)
+        });
       }
 
       if (params["orderName"] == "up") {
-        items.sort(function(a: HousekeepingBookModel, b: HousekeepingBookModel){
-          return a.name.localeCompare(b.name.toString())});
+        items.sort(function (a: HousekeepingBookModel, b: HousekeepingBookModel) {
+          return a.name.localeCompare(b.name.toString())
+        });
       } else if (params["orderName"] == "down") {
-        items.sort(function(a: HousekeepingBookModel, b: HousekeepingBookModel){
-          return b.name.localeCompare(a.name.toString())});
+        items.sort(function (a: HousekeepingBookModel, b: HousekeepingBookModel) {
+          return b.name.localeCompare(a.name.toString())
+        });
       }
     });
     return items;
@@ -100,7 +104,9 @@ export class HousekeepingBookService {
       this.angularFirestore
         .collection('housekeepingbooks')
         .add(housekeepingBook)
-        .then(response => { console.log(response) }, error => reject(error))
+        .then(response => {
+          console.log(response)
+        }, error => reject(error))
     })
   }
 

@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HousekeepingBookListArchived } from './housekeeping-book-list-archived';
-import { HousekeepingBookService } from 'src/app/services/housekeeping-book.service';
-import { of } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { HousekeepingBookModel } from 'src/app/models/housekeeping-book.model';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {HousekeepingBookListArchived} from './housekeeping-book-list-archived';
+import {HousekeepingBookService} from 'src/app/services/housekeeping-book.service';
+import {of} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {HousekeepingBookModel} from 'src/app/models/housekeeping-book.model';
 
 describe('HousekeepingBookListArchived', () => {
   let component: HousekeepingBookListArchived;
@@ -19,7 +19,7 @@ describe('HousekeepingBookListArchived', () => {
     ]);
 
     mockActivatedRoute = {
-      snapshot: { paramMap: { get: () => '1' } }
+      snapshot: {paramMap: {get: () => '1'}}
     };
 
     mockHousekeepingBookService.getHousekeepingBookListArchived.and.returnValue(of([]));
@@ -29,8 +29,8 @@ describe('HousekeepingBookListArchived', () => {
     await TestBed.configureTestingModule({
       declarations: [HousekeepingBookListArchived],
       providers: [
-        { provide: HousekeepingBookService, useValue: mockHousekeepingBookService },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute }
+        {provide: HousekeepingBookService, useValue: mockHousekeepingBookService},
+        {provide: ActivatedRoute, useValue: mockActivatedRoute}
       ]
     }).compileComponents();
 
@@ -44,8 +44,8 @@ describe('HousekeepingBookListArchived', () => {
 
   it('should fetch and fill in housekeeping books on start', () => {
     const archivedHousekeepingBooksMock: HousekeepingBookModel[] = [
-      { id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true, userId: '3' },
-      { id: '2', name: 'Archived Book 2', description: 'Description 2', isArchived: true, userId: '4'  }
+      {id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true, userId: '3'},
+      {id: '2', name: 'Archived Book 2', description: 'Description 2', isArchived: true, userId: '4'}
     ];
 
     mockHousekeepingBookService.getHousekeepingBookListArchived.and.returnValue(of(archivedHousekeepingBooksMock));
@@ -56,7 +56,7 @@ describe('HousekeepingBookListArchived', () => {
   });
 
   it('should confirm and delete a housekeeping book', () => {
-    const housekeepingBook = { id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true };
+    const housekeepingBook = {id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true};
     spyOn(window, 'confirm').and.returnValue(true);
 
     component.removeHousekeepingBook(housekeepingBook);
@@ -66,7 +66,7 @@ describe('HousekeepingBookListArchived', () => {
   });
 
   it('should dearchive a housekeeping book', () => {
-    const housekeepingBook = { id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true };
+    const housekeepingBook = {id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true};
     spyOn(window, 'confirm').and.returnValue(true);
 
     component.dearchiveHousekeepingBook(housekeepingBook);
@@ -76,7 +76,7 @@ describe('HousekeepingBookListArchived', () => {
   });
 
   it('should not delete a housekeeping book if confirm is cancelled', () => {
-    const housekeepingBook = { id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true };
+    const housekeepingBook = {id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true};
     spyOn(window, 'confirm').and.returnValue(false);
 
     component.removeHousekeepingBook(housekeepingBook);
@@ -86,7 +86,7 @@ describe('HousekeepingBookListArchived', () => {
   });
 
   it('should not dearchive a housekeeping book if confirm is cancelled', () => {
-    const housekeepingBook = { id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true };
+    const housekeepingBook = {id: '1', name: 'Archived Book 1', description: 'Description 1', isArchived: true};
     spyOn(window, 'confirm').and.returnValue(false);
 
     component.dearchiveHousekeepingBook(housekeepingBook);

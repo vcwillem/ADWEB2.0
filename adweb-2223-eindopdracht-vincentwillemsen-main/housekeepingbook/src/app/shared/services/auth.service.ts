@@ -32,6 +32,7 @@ export class AuthService {
       }
     });
   }
+
   SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
@@ -46,6 +47,7 @@ export class AuthService {
         this.router.navigate(['home']);
       });
   }
+
   SignUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
@@ -58,6 +60,7 @@ export class AuthService {
         window.alert("Your account is ready!");
       });
   }
+
   SendVerificationMail() {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
@@ -65,11 +68,13 @@ export class AuthService {
         this.router.navigate(['verify-email-address']);
       });
   }
+
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null;
     //return user !== null && user.emailVerified !== false ? true : false;
   }
+
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
@@ -77,6 +82,7 @@ export class AuthService {
       }
     });
   }
+
   AuthLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
@@ -90,6 +96,7 @@ export class AuthService {
         window.alert(error);
       });
   }
+
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
@@ -102,14 +109,17 @@ export class AuthService {
       emailVerified: true,
     };
     userRef.set(userData, {
-          merge: true,
-        });
+      merge: true,
+    });
     this.afs
       .collection('users')
       .add(userRef)
-      .then(response => { console.log(response) }, error => console.log(error))
+      .then(response => {
+        console.log(response)
+      }, error => console.log(error))
     return userRef;
   }
+
   // Sign out
   SignOut() {
     return this.afAuth.signOut().then(() => {

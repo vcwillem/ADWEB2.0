@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Subscription} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {TransactionService} from "../../../services/transaction.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -17,6 +16,8 @@ export class TransactionEditComponent {
   public categories: CategoryModel[];
   public editForm: FormGroup;
   transactionRef: any;
+  public selectedCategory: { name: string; id: string };
+  public draggedCategory: CategoryModel;
 
   constructor(
     public service: TransactionService,
@@ -37,21 +38,35 @@ export class TransactionEditComponent {
       this.transactionId = params['transactionid']
     });
 
-    this.service.getTransactionDoc(this.transactionId, this.housekeepingBookId).subscribe(ref =>{
+    this.service.getTransactionDoc(this.transactionId, this.housekeepingBookId).subscribe(ref => {
       this.transactionRef = ref;
       this.editForm = this.formBuilder.group({
-        name:[this.transactionRef.name],
-        description:[this.transactionRef.description],
-        amount:[this.transactionRef.amount],
-        categoryId:[this.transactionRef.categoryId]
+        name: [this.transactionRef.name],
+        description: [this.transactionRef.description],
+        amount: [this.transactionRef.amount],
+        categoryId: [this.transactionRef.categoryId]
       })
     })
 
     categoryService.getCategories(route).subscribe(categories => this.categories = categories)
   }
 
-  onSubmit(){
-    this.service.updateTransaction(this.editForm.value, this.transactionId, this.housekeepingBookId);
-    this.router.navigate(['/housekeeping-book/details/' + this.housekeepingBookId ], { queryParams: {orderIssuedAt: 'up'} });
+  onDragStart(category: any) {
+    this.draggedCategory = category;
+  }
+
+  allowDrop(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.selectedCategory = this.draggedCategory;
+  }
+
+
+  onSubmit() {
+    this.service.updateTransaction(this.editForm.value, this.transactionId, this.housekeepingBookId, this.selectedCategory.id);
+    this.router.navigate(['/housekeeping-book/details/' + this.housekeepingBookId], {queryParams: {orderIssuedAt: 'up'}});
   }
 }

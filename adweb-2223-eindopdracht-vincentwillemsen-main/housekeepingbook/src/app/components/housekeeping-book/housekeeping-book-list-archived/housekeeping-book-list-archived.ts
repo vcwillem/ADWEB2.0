@@ -17,14 +17,14 @@ export class HousekeepingBookListArchived {
     service.getHousekeepingBookListArchived(activatedRoute).subscribe(housekeepingbooks => this.housekeepingbooks = housekeepingbooks)
   }
 
-  removeHousekeepingBook(housekeepingbook){
-    if(confirm("Are you sure you want to delete: " + housekeepingbook.name)){
+  removeHousekeepingBook(housekeepingbook) {
+    if (confirm("Are you sure you want to delete: " + housekeepingbook.name)) {
       this.service.deleteHousekeepingBook(housekeepingbook);
     }
   }
 
-  dearchiveHousekeepingBook(housekeepingbook){
-    if(confirm("Dearchive this housekeeping book? " + housekeepingbook.name)){
+  dearchiveHousekeepingBook(housekeepingbook) {
+    if (confirm("Dearchive this housekeeping book? " + housekeepingbook.name)) {
       this.service.dearchiveHousekeepingBook(housekeepingbook.id);
     }
   }

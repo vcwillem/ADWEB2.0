@@ -21,24 +21,47 @@
     <thead>
     <tr>
       <th scope="col">
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderName:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderName:'down'}"
+           queryParamsHandling="merge">
+          <button>v</button>
+        </a>
         Name
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderName:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderName:'up'}" queryParamsHandling="merge">
+          <button>^</button>
+        </a>
       </th>
       <th scope="col">
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderDescription:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderDescription:'down'}"
+           queryParamsHandling="merge">
+          <button>v</button>
+        </a>
         Description
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderDescription:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderDescription:'up'}"
+           queryParamsHandling="merge">
+          <button>^</button>
+        </a>
       </th>
       <th scope="col">
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderAmount:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderAmount:'down'}"
+           queryParamsHandling="merge">
+          <button>v</button>
+        </a>
         Amount
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderAmount:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderAmount:'up'}"
+           queryParamsHandling="merge">
+          <button>^</button>
+        </a>
       </th>
       <th scope="col">
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderIssuedAt:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderIssuedAt:'down'}"
+           queryParamsHandling="merge">
+          <button>v</button>
+        </a>
         Issued at
-        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderIssuedAt:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+        <a routerLink="/housekeeping-book/details/{{id}}" [queryParams]="{orderIssuedAt:'up'}"
+           queryParamsHandling="merge">
+          <button>^</button>
+        </a>
       </th>
       <th class="pb-4" scope="col">
         Category
@@ -59,7 +82,8 @@
       <td>{{getCategoryName(transaction.categoryId)}}</td>
       <td>
         <span (click)="deleteTransaction(transaction)" class="btn btn-danger">Delete</span>
-        <span routerLink="/housekeeping-book/details/{{id}}/transaction/edit/{{transaction.id}}" class="btn btn-primary">Edit</span>
+        <span routerLink="/housekeeping-book/details/{{id}}/transaction/edit/{{transaction.id}}"
+              class="btn btn-primary">Edit</span>
       </td>
     </tr>
     </tbody>

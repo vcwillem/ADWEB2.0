@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { of } from 'rxjs';
-import { HousekeepingBookCreate } from './housekeeping-book-create';
-import { HousekeepingBookService } from 'src/app/services/housekeeping-book.service';
-import { UserService } from 'src/app/services/user.service';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {of} from 'rxjs';
+import {HousekeepingBookCreate} from './housekeeping-book-create';
+import {HousekeepingBookService} from 'src/app/services/housekeeping-book.service';
+import {UserService} from 'src/app/services/user.service';
 
 describe('HousekeepingBookCreate', () => {
   let component: HousekeepingBookCreate;
@@ -27,9 +27,9 @@ describe('HousekeepingBookCreate', () => {
       declarations: [HousekeepingBookCreate],
       imports: [ReactiveFormsModule],
       providers: [
-        { provide: HousekeepingBookService, useValue: mockHousekeepingBookService },
-        { provide: UserService, useValue: mockUserService },
-        { provide: Router, useValue: mockRouter },
+        {provide: HousekeepingBookService, useValue: mockHousekeepingBookService},
+        {provide: UserService, useValue: mockUserService},
+        {provide: Router, useValue: mockRouter},
       ]
     }).compileComponents();
 
@@ -53,10 +53,10 @@ describe('HousekeepingBookCreate', () => {
   });
 
   it('should get users and fill in users data', () => {
-    const usersMockData = [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }];
+    const usersMockData = [{id: 1, name: 'John'}, {id: 2, name: 'Jane'}];
     mockUserService.getUsers.and.returnValue(of(usersMockData));
 
-    fixture.detectChanges();  // triggers ngOnInit
+    fixture.detectChanges();
 
     expect(mockUserService.getUsers).toHaveBeenCalled();
   });

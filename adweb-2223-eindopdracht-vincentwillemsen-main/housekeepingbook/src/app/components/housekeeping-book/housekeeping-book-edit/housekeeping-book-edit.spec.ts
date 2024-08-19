@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { of } from 'rxjs';
-import { EditHousekeepingBookComponent } from './housekeeping-book-edit';
-import { HousekeepingBookService } from 'src/app/services/housekeeping-book.service';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {of} from 'rxjs';
+import {EditHousekeepingBookComponent} from './housekeeping-book-edit';
+import {HousekeepingBookService} from 'src/app/services/housekeeping-book.service';
 
 describe('EditHousekeepingBookComponent', () => {
   let component: EditHousekeepingBookComponent;
@@ -16,7 +16,7 @@ describe('EditHousekeepingBookComponent', () => {
     mockHousekeepingBookService = jasmine.createSpyObj(['getHousekeepingBookDoc', 'updateHousekeepingBook']);
     mockRouter = jasmine.createSpyObj(['navigate']);
     mockActivatedRoute = {
-      snapshot: { paramMap: { get: () => '1' } }
+      snapshot: {paramMap: {get: () => '1'}}
     };
 
     mockHousekeepingBookService.getHousekeepingBookDoc.and.returnValue(of({}));
@@ -27,9 +27,9 @@ describe('EditHousekeepingBookComponent', () => {
       declarations: [EditHousekeepingBookComponent],
       imports: [ReactiveFormsModule],
       providers: [
-        { provide: HousekeepingBookService, useValue: mockHousekeepingBookService },
-        { provide: Router, useValue: mockRouter },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute }
+        {provide: HousekeepingBookService, useValue: mockHousekeepingBookService},
+        {provide: Router, useValue: mockRouter},
+        {provide: ActivatedRoute, useValue: mockActivatedRoute}
       ]
     }).compileComponents();
 

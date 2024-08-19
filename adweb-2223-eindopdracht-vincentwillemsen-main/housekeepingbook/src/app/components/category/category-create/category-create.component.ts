@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CategoryService} from "../../../services/category.service";
@@ -24,8 +24,8 @@ export class CategoryCreateComponent {
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     this.service.createCategory(this.categoryForm.value);
-    this.router.navigate(['/category/list' ]);
+    this.router.navigate(['/category/list']);
   }
 }

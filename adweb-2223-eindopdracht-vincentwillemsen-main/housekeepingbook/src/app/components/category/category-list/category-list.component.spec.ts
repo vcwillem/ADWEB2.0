@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import { CategoryListComponent } from './category-list.component';
-import { CategoryService } from '../../../services/category.service';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {of} from 'rxjs';
+import {CategoryListComponent} from './category-list.component';
+import {CategoryService} from '../../../services/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import { CategoryModel } from '../../../models/category.model';
+import {CategoryModel} from '../../../models/category.model';
 import {CategoryEditComponent} from "../category-edit/category-edit.component";
 import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
@@ -17,8 +17,8 @@ describe('CategoryListComponent', () => {
 
   beforeEach(async () => {
     const mockCategories: CategoryModel[] = [
-      { id: '12AB', name: 'Category 1', budget: 500, dueDate: '2024-12-31', userId: '4213' },
-      { id: '23CD', name: 'Category 2', budget: 1500, dueDate: '2024-12-31', userId: '1232' }
+      {id: '12AB', name: 'Category 1', budget: 500, dueDate: '2024-12-31', userId: '4213'},
+      {id: '23CD', name: 'Category 2', budget: 1500, dueDate: '2024-12-31', userId: '1232'}
     ];
 
     mockCategoryService = {
@@ -33,16 +33,16 @@ describe('CategoryListComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ CategoryEditComponent ],
+      declarations: [CategoryEditComponent],
       imports: [
         ReactiveFormsModule,
         RouterTestingModule
       ],
       providers: [
         FormBuilder,
-        { provide: CategoryService, useValue: mockCategoryService },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute },
-        { provide: Router, useValue: mockRouter }
+        {provide: CategoryService, useValue: mockCategoryService},
+        {provide: ActivatedRoute, useValue: mockActivatedRoute},
+        {provide: Router, useValue: mockRouter}
       ]
     }).compileComponents();
   });
@@ -64,7 +64,13 @@ describe('CategoryListComponent', () => {
   });
 
   it('should call delete when invoked', () => {
-    const categoryToDelete: CategoryModel = { id: '1', name: 'Category 1', budget: 500, dueDate: '2024-12-31', userId: '4213' };
+    const categoryToDelete: CategoryModel = {
+      id: '1',
+      name: 'Category 1',
+      budget: 500,
+      dueDate: '2024-12-31',
+      userId: '4213'
+    };
     spyOn(window, 'confirm').and.returnValue(true); // Mock confirm dialog
 
     component.deleteCategory(categoryToDelete);
@@ -73,7 +79,13 @@ describe('CategoryListComponent', () => {
   });
 
   it('should not call delete when declined', () => {
-    const categoryToDelete: CategoryModel = { id: '1', name: 'Category 1', budget: 500, dueDate: '2024-12-31', userId: '4213' };
+    const categoryToDelete: CategoryModel = {
+      id: '1',
+      name: 'Category 1',
+      budget: 500,
+      dueDate: '2024-12-31',
+      userId: '4213'
+    };
     spyOn(window, 'confirm').and.returnValue(false);
 
     component.deleteCategory(categoryToDelete);

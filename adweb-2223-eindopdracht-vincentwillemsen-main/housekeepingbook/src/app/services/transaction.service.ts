@@ -15,7 +15,8 @@ const db = getFirestore(app);
   providedIn: 'root'
 })
 export class TransactionService {
-  constructor(private angularFirestore: AngularFirestore, public authService: AuthService) { }
+  constructor(private angularFirestore: AngularFirestore, public authService: AuthService) {
+  }
 
   getTransactionDoc(transactionId: string, housekeepingBookId: string) {
     return this.angularFirestore
@@ -32,15 +33,15 @@ export class TransactionService {
         const items: TransactionModel[] = [];
 
         snapshot.forEach((doc) => {
-            items.push({
-              id: doc.id,
-              name: doc.data()["name"],
-              description: doc.data()["description"],
-              issuedAt: doc.data()["issuedAt"],
-              amount: doc.data()["amount"],
-              categoryId: doc.data()["categoryId"],
-              housekeepingBookId: housekeepingBookId,
-            })
+          items.push({
+            id: doc.id,
+            name: doc.data()["name"],
+            description: doc.data()["description"],
+            issuedAt: doc.data()["issuedAt"],
+            amount: doc.data()["amount"],
+            categoryId: doc.data()["categoryId"],
+            housekeepingBookId: housekeepingBookId,
+          })
         })
         sub.next(this.orderTransactionsBooks(activatedRoute, items));
       })
@@ -50,47 +51,55 @@ export class TransactionService {
   orderTransactionsBooks(activatedRoute: ActivatedRoute, items: TransactionModel[]) {
     activatedRoute.queryParams.subscribe(params => {
       if (params["orderName"] == "up") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
-          return a.name.localeCompare(b.name.toString())});
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
+          return a.name.localeCompare(b.name.toString())
+        });
       } else if (params["orderName"] == "down") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
-          return b.name.localeCompare(a.name.toString())});
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
+          return b.name.localeCompare(a.name.toString())
+        });
       }
 
       if (params["orderDescription"] == "up") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
-          return a.description.localeCompare(b.description)});
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
+          return a.description.localeCompare(b.description)
+        });
       } else if (params["description"] == "down") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
-          return b.description.localeCompare(a.description)});
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
+          return b.description.localeCompare(a.description)
+        });
       }
 
       if (params["orderIssuedAt"] == "down") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
-          return a.issuedAt.localeCompare(b.issuedAt.toString())});
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
+          return a.issuedAt.localeCompare(b.issuedAt.toString())
+        });
       } else if (params["orderIssuedAt"] == "up") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
-          return b.issuedAt.localeCompare(a.issuedAt.toString())});
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
+          return b.issuedAt.localeCompare(a.issuedAt.toString())
+        });
       }
 
       if (params["orderAmount"] == "up") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
           if (a.amount < b.amount) {
             return 1;
           } else if (a.amount == b.amount) {
             return 0;
           } else {
             return -1;
-          }});
+          }
+        });
       } else if (params["orderAmount"] == "down") {
-        items.sort(function(a: TransactionModel, b: TransactionModel){
+        items.sort(function (a: TransactionModel, b: TransactionModel) {
           if (a.amount > b.amount) {
             return 1;
           } else if (a.amount == b.amount) {
             return 0;
           } else {
             return -1;
-          }});
+          }
+        });
       }
     });
     return items;
@@ -107,7 +116,9 @@ export class TransactionService {
         .doc(housekeepingBookId)
         .collection('transactions')
         .add(transaction)
-        .then(response => { console.log(response) }, error => reject(error))
+        .then(response => {
+          console.log(response)
+        }, error => reject(error))
     })
   }
 
@@ -120,7 +131,7 @@ export class TransactionService {
       .delete()
   }
 
-  updateTransaction(transaction: TransactionModel, transactionId: string, housekeepingBookId: string) {
+  updateTransaction(transaction: TransactionModel, transactionId: string, housekeepingBookId: string, categoryId: string) {
     transaction.issuedAt = Date().toLocaleString();
     return this.angularFirestore
       .collection('housekeepingbooks')
@@ -131,7 +142,7 @@ export class TransactionService {
         name: transaction.name,
         description: transaction.description,
         amount: transaction.amount,
-        categoryId: transaction.categoryId
+        categoryId: categoryId
       })
   }
 }

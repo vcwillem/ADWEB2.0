@@ -7,14 +7,25 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">
-        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderName:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderName:'down'}"
+           queryParamsHandling="merge">
+          <button>v</button>
+        </a>
         Name
-        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderName:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderName:'up'}" queryParamsHandling="merge">
+          <button>^</button>
+        </a>
       </th>
       <th scope="col">
-        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderDescription:'down'}"  queryParamsHandling="merge"><button>v</button></a>
+        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderDescription:'down'}"
+           queryParamsHandling="merge">
+          <button>v</button>
+        </a>
         Description
-        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderDescription:'up'}"  queryParamsHandling="merge"><button>^</button></a>
+        <a routerLink="/housekeeping-book/list/archived/" [queryParams]="{orderDescription:'up'}"
+           queryParamsHandling="merge">
+          <button>^</button>
+        </a>
       </th>
       <th scope="col">
         <span routerLink="/housekeeping-book/list/archived/">Clear filters <span class="btn btn-close"></span></span>
@@ -27,7 +38,8 @@
       <td>{{book.name}}</td>
       <td>{{book.description}}</td>
       <td>
-        <span routerLink="/housekeeping-book/details/{{book.id}}" [queryParams]="{orderIssuedAt:'up'}" class="btn btn-success">Open</span>
+        <span routerLink="/housekeeping-book/details/{{book.id}}" [queryParams]="{orderIssuedAt:'up'}"
+              class="btn btn-success">Open</span>
         <span (click)="dearchiveHousekeepingBook(book)" class="btn btn-success">Activate</span>
         <span (click)="removeHousekeepingBook(book)" class="btn btn-danger">Delete</span>
       </td>

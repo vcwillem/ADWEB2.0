@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  firebaseConfig : {
+  firebaseConfig: {
     apiKey: "AIzaSyDdBs6RMVnNVm6WGUqaDvntPJeZhqw9fQw",
     authDomain: "housekeepingbooks.firebaseapp.com",
     databaseURL: "https://housekeepingbooks-default-rtdb.europe-west1.firebasedatabase.app",

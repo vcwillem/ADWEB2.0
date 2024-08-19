@@ -1,4 +1,4 @@
-*{
+* {
   margin: 10px;
 }
 
@@ -12,26 +12,26 @@
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    width: 600px;
-    margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  margin: 50px auto;
 }
 
 .box {
-    width: 250px;
-    padding: 10px;
+  width: 250px;
+  padding: 10px;
 }
 
 .item {
-    border: 1px solid black;
-    margin: 10px;
-    padding: 20px;
-    text-align: center;
-    cursor: grab;
-    background-color: #f1f1f1;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: grab;
+  background-color: #f1f1f1;
 }
 
 .item:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }

@@ -1,14 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { of } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { TransactionEditComponent } from './transaction-edit.component';
-import { TransactionService } from '../../../services/transaction.service';
-import { CategoryService } from '../../../services/category.service';
-import { CategoryModel } from '../../../models/category.model';
-import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from '../../../../environments/environment';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {of} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {TransactionEditComponent} from './transaction-edit.component';
+import {TransactionService} from '../../../services/transaction.service';
+import {CategoryService} from '../../../services/category.service';
+import {CategoryModel} from '../../../models/category.model';
+import {AngularFireModule} from '@angular/fire/compat';
+import {environment} from '../../../../environments/environment';
 
 describe('TransactionEditComponent', () => {
   let component: TransactionEditComponent;
@@ -30,8 +30,8 @@ describe('TransactionEditComponent', () => {
 
   beforeEach(async () => {
     const mockCategories: CategoryModel[] = [
-      { id: '12AB', name: 'Category 1', budget: 500, dueDate: '2024-12-31', userId: '4213' },
-      { id: '23CD', name: 'Category 2', budget: 1500, dueDate: '2024-12-31', userId: '1232' }
+      {id: '12AB', name: 'Category 1', budget: 500, dueDate: '2024-12-31', userId: '4213'},
+      {id: '23CD', name: 'Category 2', budget: 1500, dueDate: '2024-12-31', userId: '1232'}
     ];
 
     mockCategoryService = {
@@ -41,7 +41,7 @@ describe('TransactionEditComponent', () => {
     mockTransactionService = jasmine.createSpyObj('TransactionService', ['getTransactionDoc', 'updateTransaction']);
 
     mockActivatedRoute = {
-      params: of({ id: '123', transactionid: '456' })
+      params: of({id: '123', transactionid: '456'})
     };
 
     mockRouter = {
@@ -59,10 +59,10 @@ describe('TransactionEditComponent', () => {
       ],
       providers: [
         FormBuilder,
-        { provide: TransactionService, useValue: mockTransactionService },
-        { provide: CategoryService, useValue: mockCategoryService },
-        { provide: Router, useValue: mockRouter },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute }
+        {provide: TransactionService, useValue: mockTransactionService},
+        {provide: CategoryService, useValue: mockCategoryService},
+        {provide: Router, useValue: mockRouter},
+        {provide: ActivatedRoute, useValue: mockActivatedRoute}
       ]
     }).compileComponents();
   });
@@ -99,7 +99,7 @@ describe('TransactionEditComponent', () => {
     expect(mockTransactionService.updateTransaction);
 
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/housekeeping-book/details/123'], {
-      queryParams: { orderIssuedAt: 'up' }
+      queryParams: {orderIssuedAt: 'up'}
     });
   });
 

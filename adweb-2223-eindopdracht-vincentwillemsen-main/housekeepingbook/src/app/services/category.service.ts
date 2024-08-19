@@ -31,7 +31,9 @@ export class CategoryService {
       this.angularFirestore
         .collection('categories')
         .add(category)
-        .then(response => { console.log(response) }, error => reject(error))
+        .then(response => {
+          console.log(response)
+        }, error => reject(error))
     })
   }
 

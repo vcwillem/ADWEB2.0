@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CategoryModel} from "../../../models/category.model";
 import {CategoryService} from "../../../services/category.service";

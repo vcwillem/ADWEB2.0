@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {CategoryService} from "../../../services/category.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-category-edit',
@@ -30,18 +29,18 @@ export class CategoryEditComponent {
       this.categoryId = params['id']
     });
 
-    this.service.getCategoryDoc(this.categoryId).subscribe(ref =>{
+    this.service.getCategoryDoc(this.categoryId).subscribe(ref => {
       this.categoryRef = ref;
       this.editForm = this.formBuilder.group({
-        name:[this.categoryRef.name],
-        budget:[this.categoryRef.budget],
-        dueDate:[this.categoryRef.dueDate]
+        name: [this.categoryRef.name],
+        budget: [this.categoryRef.budget],
+        dueDate: [this.categoryRef.dueDate]
       })
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     this.service.updateCategory(this.editForm.value, this.categoryId);
-    this.router.navigate(['/category/list' ]);
+    this.router.navigate(['/category/list']);
   }
 }

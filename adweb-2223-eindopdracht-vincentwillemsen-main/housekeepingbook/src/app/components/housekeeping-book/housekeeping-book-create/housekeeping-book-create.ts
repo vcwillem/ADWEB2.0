@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HousekeepingBookService} from 'src/app/services/housekeeping-book.service';
-import firebase from "firebase/compat";
 import {UserModel} from "../../../models/user.model";
 import {UserService} from "../../../services/user.service";
 
@@ -30,11 +29,13 @@ export class HousekeepingBookCreate {
       whitelistedUsers: [''],
       isArchived: [false]
     });
-    this.userService.getUsers().subscribe(users => { this.users = users; });
+    this.userService.getUsers().subscribe(users => {
+      this.users = users;
+    });
   }
 
 
-  onSubmit(){
+  onSubmit() {
     this.service.createHousekeepingBook(this.housekeepingbookForm.value);
     this.router.navigate(['housekeeping-book/list']);
   }

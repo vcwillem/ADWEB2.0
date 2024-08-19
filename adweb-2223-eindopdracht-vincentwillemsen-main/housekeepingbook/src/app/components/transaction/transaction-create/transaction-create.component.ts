@@ -53,8 +53,8 @@ export class TransactionCreateComponent {
     this.selectedCategory = this.draggedCategory;
   }
 
-  onSubmit(){
+  onSubmit() {
     this.service.createTransaction(this.transactionForm.value, this.housekeepingBookId, this.selectedCategory.id);
-    this.router.navigate(['/housekeeping-book/details/' + this.housekeepingBookId ], { queryParams: {orderIssuedAt: 'up'} });
+    this.router.navigate(['/housekeeping-book/details/' + this.housekeepingBookId], {queryParams: {orderIssuedAt: 'up'}});
   }
 }

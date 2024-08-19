@@ -1,20 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {
-  HousekeepingBookListComponent
-} from './components/housekeeping-book/housekeeping-book-list/housekeeping-book-list';
-import {
-  HousekeepingBookCreate
-} from './components/housekeeping-book/housekeeping-book-create/housekeeping-book-create';
-import {
-  EditHousekeepingBookComponent
-} from './components/housekeeping-book/housekeeping-book-edit/housekeeping-book-edit';
-import {
-  HousekeepingBookListArchived
-} from './components/housekeeping-book/housekeeping-book-list-archived/housekeeping-book-list-archived';
-import {
-  HousekeepingBookDetails
-} from './components/housekeeping-book/housekeeping-book-details/housekeeping-book-details';
+import {HousekeepingBookListComponent} from './components/housekeeping-book/housekeeping-book-list/housekeeping-book-list';
+import {HousekeepingBookCreate} from './components/housekeeping-book/housekeeping-book-create/housekeeping-book-create';
+import {EditHousekeepingBookComponent} from './components/housekeeping-book/housekeeping-book-edit/housekeeping-book-edit';
+import {HousekeepingBookListArchived} from './components/housekeeping-book/housekeeping-book-list-archived/housekeeping-book-list-archived';
+import {HousekeepingBookDetails} from './components/housekeeping-book/housekeeping-book-details/housekeeping-book-details';
 
 import {HomeComponent} from "./components/home/home.component";
 import {SignInComponent} from './components/user/sign-in/sign-in.component';
@@ -39,8 +29,16 @@ const routes: Routes = [
   {path: 'housekeeping-book/edit/:id', component: EditHousekeepingBookComponent, canActivate: [AuthGuard]},
   {path: 'housekeeping-book/details/:id', component: HousekeepingBookDetails, canActivate: [AuthGuard]},
 
-  {path: 'housekeeping-book/details/:id/transaction/create', component: TransactionCreateComponent, canActivate: [AuthGuard]},
-  {path: 'housekeeping-book/details/:id/transaction/edit/:transactionid', component: TransactionEditComponent, canActivate: [AuthGuard]},
+  {
+    path: 'housekeeping-book/details/:id/transaction/create',
+    component: TransactionCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'housekeeping-book/details/:id/transaction/edit/:transactionid',
+    component: TransactionEditComponent,
+    canActivate: [AuthGuard]
+  },
 
   {path: 'category/create', component: CategoryCreateComponent, canActivate: [AuthGuard]},
   {path: 'category/list', component: CategoryListComponent, canActivate: [AuthGuard]},
@@ -53,4 +51,5 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

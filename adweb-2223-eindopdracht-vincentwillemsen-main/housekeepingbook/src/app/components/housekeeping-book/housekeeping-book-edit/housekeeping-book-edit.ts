@@ -26,12 +26,12 @@ export class EditHousekeepingBookComponent {
 
     const id = this.act.snapshot.paramMap.get('id')!;
 
-    this.service.getHousekeepingBookDoc(id).subscribe(ref =>{
+    this.service.getHousekeepingBookDoc(id).subscribe(ref => {
       this.housekeepingBookRef = ref;
       this.editForm = this.formBuilder.group({
-        name:[this.housekeepingBookRef.name],
-        description:[this.housekeepingBookRef.description],
-        isArchived:[this.housekeepingBookRef.isArchived]
+        name: [this.housekeepingBookRef.name],
+        description: [this.housekeepingBookRef.description],
+        isArchived: [this.housekeepingBookRef.isArchived]
       })
 
       if (this.editForm.value.isArchived) {
@@ -40,7 +40,7 @@ export class EditHousekeepingBookComponent {
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     const id = this.act.snapshot.paramMap.get('id')!;
 
     this.service.updateHousekeepingBook(this.editForm.value, id);

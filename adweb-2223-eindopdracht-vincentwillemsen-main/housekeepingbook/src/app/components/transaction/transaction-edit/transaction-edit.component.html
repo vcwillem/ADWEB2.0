@@ -14,11 +14,26 @@
       <label>Amount</label>
       <input type="number" formControlName="amount" class="form-control" required>
     </div>
-    <div class="mb-3">
-      <label>Choose a category:</label>
-      <select formControlName="categoryId" class="form-control" required>
-        <option *ngFor="let category of categories; let i = index" value="{{category.id}}">{{category.name}}</option>
-      </select>
+    <div class="container">
+      <div class="box" id="categories">
+        <h3>Categories</h3>
+        <div class="item"
+             *ngFor="let category of categories; let i = index"
+             draggable="true"
+             (dragstart)="onDragStart(category)">
+          {{category.name}}
+        </div>
+      </div>
+
+      <div class="box"
+           id="current-category"
+           (drop)="onDrop($event)"
+           (dragover)="allowDrop($event)">
+        <h3>Currently:</h3>
+        <div id="chosenCategory" class="item">
+          {{ selectedCategory?.name || 'None' }}
+        </div>
+      </div>
     </div>
     <div class="mb-3">
       <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Edit</button>

@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CategoryCreateComponent } from './category-create.component';
-import { CategoryService } from '../../../services/category.service';
-import { CategoryModel } from '../../../models/category.model';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {CategoryCreateComponent} from './category-create.component';
+import {CategoryService} from '../../../services/category.service';
+import {CategoryModel} from '../../../models/category.model';
 
 describe('CategoryCreateComponent', () => {
   let component: CategoryCreateComponent;
@@ -16,15 +16,15 @@ describe('CategoryCreateComponent', () => {
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [ CategoryCreateComponent ],
-      imports: [ ReactiveFormsModule ],
+      declarations: [CategoryCreateComponent],
+      imports: [ReactiveFormsModule],
       providers: [
-        { provide: CategoryService, useValue: mockCategoryService },
-        { provide: Router, useValue: mockRouter },
+        {provide: CategoryService, useValue: mockCategoryService},
+        {provide: Router, useValue: mockRouter},
         FormBuilder
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
