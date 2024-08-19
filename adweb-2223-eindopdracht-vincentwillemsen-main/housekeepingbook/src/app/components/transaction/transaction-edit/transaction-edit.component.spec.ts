@@ -93,6 +93,7 @@ describe('TransactionEditComponent', () => {
     };
 
     component.editForm.setValue(mockFormValue);
+    component.selectedCategory = {id: '23CD', name: 'Category 1'};
 
     component.onSubmit();
 
