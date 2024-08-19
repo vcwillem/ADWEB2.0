@@ -17,7 +17,7 @@ Chart.register(...registerables);
 export class HousekeepingBookDetails implements OnInit {
   public id: string;
   public transactions: TransactionModel[] = [];
-  private categories: CategoryModel[] = [];
+  categories: { name: string; id: string }[] = [];
   public lineChart: any;
   public barChart: any;
 
@@ -64,7 +64,7 @@ export class HousekeepingBookDetails implements OnInit {
     return categoryName;
   }
 
-  private createCharts(): void {
+  createCharts(): void {
     this.createLineChart();
     this.createBarChart();
   }

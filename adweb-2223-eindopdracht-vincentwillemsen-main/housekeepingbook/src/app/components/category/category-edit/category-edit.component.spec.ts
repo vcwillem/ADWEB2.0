@@ -67,7 +67,7 @@ describe('CategoryEditComponent', () => {
     expect(mockCategoryService.updateCategory).toHaveBeenCalledWith(component.editForm.value, '12AB');
   });
 
-  it('should navigate to /category/list on submit', () => {
+  it('should navigate on submit', () => {
     component.onSubmit();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/category/list']);
   });
